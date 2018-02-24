@@ -1,10 +1,10 @@
 package com.lzc.liu.lzcproject.base;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import com.blankj.utilcode.util.BarUtils;
 import com.blankj.utilcode.util.NetworkUtils;
 import com.lzc.liu.lzcproject.broadcastreceiver.NetStateReceiver;
 import com.lzc.liu.lzcproject.util.AppManagerUtils;
@@ -21,18 +21,34 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     private boolean isNetAvailable;
 
-
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
-        ButterKnife.bind(this);
-        AppManagerUtils.getAppManager().addActivity(this);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setView();
         initView();
         initData();
         initListener();
         netstate();
         broadcast();
+        AppManagerUtils.getAppManager().addActivity(this);
     }
+
+    /**
+     * 处理视图
+     */
+    private void setView() {
+        BarUtils.setNavBarImmersive(this);
+        BarUtils.setNavBarVisibility(this, false);
+        setContentView(getView());
+        ButterKnife.bind(this);
+    }
+
+    /**
+     * 获取视图
+     *
+     * @return 视图
+     */
+    protected abstract int getView();
 
     /**
      * 网络连接状态
@@ -101,7 +117,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
-    public void closeActivity(){
+    public void closeActivity() {
         AppManagerUtils.getAppManager().finishActivity(this);
     }
 
