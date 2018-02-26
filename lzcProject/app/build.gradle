@@ -60,7 +60,12 @@ dependencies {
     //ViewPager
     compile 'com.shizhefei:ViewPagerIndicator:1.1.6'
     //rvadapter
-    compile 'com.zhy:base-rvadapter:3.0.3'
+    compile('com.zhy:base-rvadapter:3.0.3')
+            {
+                exclude module: 'recyclerview-v7'
+            }
+    //LRecyclerView
+    compile 'com.github.jdsjlzx:LRecyclerView:1.5.0'
 
 
 }

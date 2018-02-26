@@ -1,24 +1,19 @@
 package com.lzc.liu.lzcproject.base;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.blankj.utilcode.util.NetworkUtils;
 import com.lzc.liu.lzcproject.broadcastreceiver.NetStateReceiver;
-import com.lzc.liu.lzcproject.common.LazyViewPager;
+import com.shizhefei.fragment.LazyFragment;
+
+import butterknife.ButterKnife;
 
 
 /**
  * Created by liu on 2016/12/6.
  */
 
-public abstract class BaseViewPagerFragment extends LazyViewPager {
-
-    private LayoutInflater inflater;
-    private ViewGroup container;
-    private View mLayoutView;
+public abstract class BaseViewLazyFragment extends LazyFragment {
 
     protected NetStateReceiver.NetChangeObserver mNetChangeObserver = null;
 
@@ -26,25 +21,16 @@ public abstract class BaseViewPagerFragment extends LazyViewPager {
 
     private BaseActivity mActivity;
 
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        this.inflater = inflater;
-        this.container = container;
-        return super.onCreateView(inflater, container, savedInstanceState);
-    }
-
     @Override
     protected void onCreateViewLazy(Bundle savedInstanceState) {
         super.onCreateViewLazy(savedInstanceState);
-        mLayoutView = inflater.inflate(getViewID(), container, false);
-        setContentView(mLayoutView);
+        setContentView(getViewID());
+        ButterKnife.bind( this , getContentView()) ;
         initView();     //初始化布局
         initData();
         initListener();
         netstate();
         broadcast();
-
     }
 
     /**

@@ -37,8 +37,8 @@ public abstract class BaseActivity extends AppCompatActivity {
      * 处理视图
      */
     private void setView() {
-        BarUtils.setNavBarImmersive(this);
-        BarUtils.setNavBarVisibility(this, false);
+//        BarUtils.setNavBarImmersive(this);
+        BarUtils.setStatusBarAlpha(this,100);
         setContentView(getView());
         ButterKnife.bind(this);
     }
