@@ -205,3 +205,16 @@
 -keep class com.blankj.utilcode.** { *; }
 -keepclassmembers class com.blankj.utilcode.** { *; }
 -dontwarn com.blankj.utilcode.**
+
+ #ViewPagerIndicator
+ -dontwarn com.shizhefei.**
+ -keep class com.shizhefei.** { *; }
+ #ViewPagerIndicator包下所有类及类里面的内容不要混淆
+
+ #rvadapter
+ -dontwarn com.zhy.**
+ -keep class com.zhy.** {*;}
+
+ #LRecyclerview_library
+ -dontwarn com.github.jdsjlzx.**
+ -keep class com.github.jdsjlzx.**{*;}

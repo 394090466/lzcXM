@@ -19,4 +19,5 @@ public interface JokeApi {
 
     @GET("showapi_joke/joke_text")
     Call<JokeEntity> callJoke(@Header("apikey") String apikey, @Query("page") int page);
+
 }

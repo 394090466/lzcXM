@@ -9,6 +9,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -31,13 +32,16 @@ repositories {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     //noinspection GradleCompatible
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
     //retrofit2
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.2.0'
     //glide
     implementation 'com.github.bumptech.glide:glide:4.6.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
@@ -56,16 +60,14 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     //utilcode
     compile 'com.blankj:utilcode:1.12.6'
-
     //ViewPager
     compile 'com.shizhefei:ViewPagerIndicator:1.1.6'
     //rvadapter
-    compile('com.zhy:base-rvadapter:3.0.3')
-            {
-                exclude module: 'recyclerview-v7'
-            }
+        compile('com.zhy:base-rvadapter:3.0.3')
+    //            {
+    //                exclude module: 'recyclerview-v7'
+    //            }
     //LRecyclerView
     compile 'com.github.jdsjlzx:LRecyclerView:1.5.0'
-
-
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
 }

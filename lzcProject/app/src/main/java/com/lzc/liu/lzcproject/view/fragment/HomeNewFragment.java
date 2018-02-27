@@ -19,6 +19,7 @@ public class HomeNewFragment extends BaseViewLazyFragment {
     @BindView(R.id.lrv_newhome)
     LRecyclerView lrvNewhome;
 
+
     @Override
     protected int getViewID() {
         return R.layout.fragment_new_home;
