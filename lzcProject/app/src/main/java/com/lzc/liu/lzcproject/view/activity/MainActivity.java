@@ -1,12 +1,13 @@
 package com.lzc.liu.lzcproject.view.activity;
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
 import com.lzc.liu.lzcproject.R;
 import com.lzc.liu.lzcproject.adapter.MainFragmentAdapter;
 import com.lzc.liu.lzcproject.base.BaseActivity;
+import com.lzc.liu.lzcproject.interfaces.presenter.MainPresenter;
 import com.lzc.liu.lzcproject.interfaces.view.MainView;
+import com.lzc.liu.lzcproject.presenter.MainPresenterImpl;
 import com.lzc.liu.lzcproject.view.fragment.HomeFragment;
 import com.lzc.liu.lzcproject.view.fragment.LiveFragmet;
 import com.lzc.liu.lzcproject.view.fragment.MeFragment;
@@ -19,9 +20,8 @@ import com.shizhefei.view.viewpager.SViewPager;
 import java.util.ArrayList;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
-public class MainActivity extends BaseActivity implements MainView{
+public class MainActivity extends BaseActivity implements MainView {
 
 
     @BindView(R.id.main_sp)
@@ -31,7 +31,9 @@ public class MainActivity extends BaseActivity implements MainView{
 
     private IndicatorViewPager indicatorViewPager;
 
-    private ArrayList<Fragment> fragmentlist ;
+    private ArrayList<Fragment> fragmentlist;
+
+    private MainPresenter mainPresenter;
 
     @Override
     protected int getView() {
@@ -50,6 +52,7 @@ public class MainActivity extends BaseActivity implements MainView{
 
     @Override
     public void initView() {
+        mainPresenter = new MainPresenterImpl(this, this);
         fragmentlist = new ArrayList<>();
         HomeFragment homeFragment = new HomeFragment();
         LiveFragmet liveFragmet = new LiveFragmet();
@@ -59,16 +62,20 @@ public class MainActivity extends BaseActivity implements MainView{
         fragmentlist.add(liveFragmet);
         fragmentlist.add(weatherFragmet);
         fragmentlist.add(meFragment);
+    }
+
+    @Override
+    public void onRefreshData() {
         indicatorView.setOnTransitionListener(new OnTransitionTextListener().setColorId(this, R.color.sytb1, R.color.sytb2));
-        indicatorViewPager = new IndicatorViewPager(indicatorView, viewPager);
-        indicatorViewPager.setAdapter(new MainFragmentAdapter(getSupportFragmentManager(), this, fragmentlist));
         viewPager.setCanScroll(false);
         viewPager.setOffscreenPageLimit(3);
+        indicatorViewPager = new IndicatorViewPager(indicatorView, viewPager);
+        indicatorViewPager.setAdapter(new MainFragmentAdapter(getSupportFragmentManager(), this, fragmentlist));
     }
 
     @Override
     public void initData() {
-
+        mainPresenter.GetSubscribed();
     }
 
     @Override
@@ -76,10 +83,5 @@ public class MainActivity extends BaseActivity implements MainView{
 
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
+
 }

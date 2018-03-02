@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.ConvertUtils;
 import com.lzc.liu.lzcproject.R;
 import com.lzc.liu.lzcproject.view.activity.MainActivity;
 import com.shizhefei.view.indicator.IndicatorViewPager;
@@ -52,13 +53,8 @@ public class MainFragmentAdapter extends IndicatorViewPager.IndicatorFragmentPag
         TextView textView = (TextView) convertView;
         textView.setText(tabename[position]);
         Drawable drawable= this.context.getResources().getDrawable(tabIcons[position]);
-        drawable.setBounds(0, -3, 120, 120);
+        drawable.setBounds(0, ConvertUtils.px2dp(-3), ConvertUtils.px2dp(100), ConvertUtils.px2dp(100));
         textView.setCompoundDrawables(null,drawable,null,null);
-//        textView.setCompoundDrawablesWithIntrinsicBounds(0, tabIcons[position], 0, 0);
-//        TextView textView = convertView.findViewById(R.id.tv_main_tebeicon);
-//        ImageView imageView = convertView.findViewById(R.id.iv_main_tebeicon);
-//        textView.setText(tabename[position]);
-//        imageView.setImageResource(tabIcons[position]);
         return textView;
     }
 

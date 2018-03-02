@@ -8,6 +8,6 @@ import com.lzc.liu.lzcproject.model.WelcomeModeImpl;
 
 public interface WelcomeModel {
 
-    void GetVesions(WelcomeModeImpl.onWelcomeListener listener);
+    void GetDataInit(WelcomeModeImpl.onWelcomeListener listener);
 
 }

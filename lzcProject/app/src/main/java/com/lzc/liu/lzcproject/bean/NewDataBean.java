@@ -12,15 +12,15 @@ public class NewDataBean {
 
 
     @SerializedName("data")
-    private DataBean _$Data56; // FIXME check this code
+    private DataBean _$Data114; // FIXME check this code
     private String message;
 
-    public DataBean get_$Data56() {
-        return _$Data56;
+    public DataBean get_$Data114() {
+        return _$Data114;
     }
 
-    public void set_$Data56(DataBean _$Data56) {
-        this._$Data56 = _$Data56;
+    public void set_$Data114(DataBean _$Data114) {
+        this._$Data114 = _$Data114;
     }
 
     public String getMessage() {
@@ -33,7 +33,7 @@ public class NewDataBean {
 
     public static class DataBean {
         @SerializedName("add_ss_queries_header_open")
-        private int _$Add_ss_queries_header_open292; // FIXME check this code
+        private int _$Add_ss_queries_header_open328; // FIXME check this code
         private int add_ss_queries_open;
         private int add_ss_queries_plaintext_open;
         private int chromium_open;
@@ -65,12 +65,12 @@ public class NewDataBean {
         private List<String> ttnet_http_dns_bypass_domains;
         private List<String> varticle_frontier_urls;
 
-        public int get_$Add_ss_queries_header_open292() {
-            return _$Add_ss_queries_header_open292;
+        public int get_$Add_ss_queries_header_open328() {
+            return _$Add_ss_queries_header_open328;
         }
 
-        public void set_$Add_ss_queries_header_open292(int _$Add_ss_queries_header_open292) {
-            this._$Add_ss_queries_header_open292 = _$Add_ss_queries_header_open292;
+        public void set_$Add_ss_queries_header_open328(int _$Add_ss_queries_header_open328) {
+            this._$Add_ss_queries_header_open328 = _$Add_ss_queries_header_open328;
         }
 
         public int getAdd_ss_queries_open() {

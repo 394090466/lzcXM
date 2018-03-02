@@ -20,7 +20,7 @@ public class OkHttp3Utils {
     private static final int DEFAULT_TIMEOUT = 30;
     private static Context mContext;
 
-    public  static OkHttpClient getOkHttpSingletonInstance() {
+    public static OkHttpClient getOkHttpSingletonInstance() {
         if (okHttpClient == null) {
             synchronized (OkHttpClient.class) {
                 if (okHttpClient == null) {
@@ -30,8 +30,8 @@ public class OkHttp3Utils {
                             .readTimeout(3, TimeUnit.SECONDS)
                             .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS) //设置连接超时 30秒
                             .writeTimeout(3, TimeUnit.MINUTES)
-                            .addInterceptor(new LoggingInterceptor())//添加请求拦截
-                            .retryOnConnectionFailure(true);
+                            .addInterceptor(new LoggingInterceptor());//添加请求拦截
+                    //                            .retryOnConnectionFailure(true);
 
                     //如果不是在正式包，添加拦截 打印响应json
                     if (BuildConfig.DEBUG) {
@@ -39,7 +39,8 @@ public class OkHttp3Utils {
                                 new HttpLoggingInterceptor.Logger() {
                                     @Override
                                     public void log(String message) {
-                                        if (TextUtils.isEmpty(message)) return;
+                                        if (TextUtils.isEmpty(message))
+                                            return;
                                         String s = message.substring(0, 1);
                                         //如果收到响应是json才打印
                                         if ("{".equals(s) || "[".equals(s)) {

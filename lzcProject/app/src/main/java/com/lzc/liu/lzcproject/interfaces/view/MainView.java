@@ -5,4 +5,6 @@ package com.lzc.liu.lzcproject.interfaces.view;
  */
 
 public interface MainView {
+
+    void onRefreshData();
 }

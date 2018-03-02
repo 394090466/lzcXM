@@ -29,7 +29,7 @@ public class HomeFragmentAdapter extends  IndicatorViewPager.IndicatorFragmentPa
 
     @Override
     public int getCount() {
-        return NewData.NewTabList.length;
+        return NewData.getNewTabList().size();
     }
 
     @Override
@@ -38,7 +38,7 @@ public class HomeFragmentAdapter extends  IndicatorViewPager.IndicatorFragmentPa
             convertView = inflater.inflate(R.layout.layout_home_tabeicon, container, false);
         }
         TextView textView = (TextView) convertView;
-        textView.setText(NewData.NewTabList[position]);
+        textView.setText(NewData.getNewTabList().get(position));
         return textView;
     }
 
@@ -46,7 +46,6 @@ public class HomeFragmentAdapter extends  IndicatorViewPager.IndicatorFragmentPa
     public Fragment getFragmentForPage(int position) {
         HomeNewFragment mainFragment = new HomeNewFragment();
         Bundle bundle = new Bundle();
-        bundle.putString(HomeNewFragment.INTENT_STRING_TABNAME, NewData.NewTabList[position]);
         bundle.putInt(HomeNewFragment.INTENT_INT_INDEX, position);
         mainFragment.setArguments(bundle);
         return mainFragment;
