@@ -1,7 +1,5 @@
 package com.lzc.liu.lzcproject.adapter.newitem;
 
-import android.content.Context;
-
 import com.google.gson.Gson;
 import com.lzc.liu.lzcproject.R;
 import com.lzc.liu.lzcproject.bean.NewContentBean;
@@ -10,20 +8,13 @@ import com.zhy.adapter.recyclerview.base.ItemViewDelegate;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
 /**
- * Created by liu on 2018/3/2.
+ * Created by liu on 2018/3/6.
  */
 
-public class NewDataItemText implements ItemViewDelegate<NewListBean.DataBean> {
-
-    private Context context;
-
-    public NewDataItemText(Context context){
-        this.context = context;
-    }
-
+public class NewDataItemImg3 implements ItemViewDelegate<NewListBean.DataBean> {
     @Override
     public int getItemViewLayoutId() {
-        return R.layout.layout_newdataitemtext;
+        return R.layout.layout_newdataitemimg3;
     }
 
     @Override
@@ -37,9 +28,7 @@ public class NewDataItemText implements ItemViewDelegate<NewListBean.DataBean> {
     }
 
     @Override
-    public void convert(ViewHolder holder, NewListBean.DataBean newListBean, int position) {
-        String stringjsonData = newListBean.getContent();
-        NewContentBean newContentBean = new Gson().fromJson(stringjsonData,NewContentBean.class);
-        holder.setText(R.id.tv_title_newitem,newContentBean.getTitle());
+    public void convert(ViewHolder holder, NewListBean.DataBean dataBean, int position) {
+        holder.setImageResource(R.id.iv_item3image,R.drawable.icon_home_un);
     }
 }

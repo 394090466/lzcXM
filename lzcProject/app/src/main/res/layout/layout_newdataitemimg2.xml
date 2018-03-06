@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/dp_15">
+
+
+    <TextView
+        android:id="@+id/tv_title_newitem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="@dimen/dp_10"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="奥术大师多撒大所多撒大所大所大所大所大所多奥术大撒撒大所大所大所多"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        tools:ignore="RtlSymmetry"/>
+
+    <LinearLayout
+        android:id="@+id/ll_newitem"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_70"
+        android:layout_below="@+id/tv_title_newitem">
+
+        <ImageView
+            android:id="@+id/iv_newdata_itme2_d1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/dp_10"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:id="@+id/iv_newdata_itme2_d2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:id="@+id/iv_newdata_itme2_d3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_iconfrom"
+        android:layout_width="@dimen/dp_20"
+        android:layout_height="@dimen/dp_20"
+        android:layout_alignBottom="@+id/iv_item1"
+        android:layout_below="@+id/ll_newitem"
+        android:layout_marginTop="@dimen/dp_5"/>
+
+
+    <TextView
+        android:id="@+id/tv_ly_newitem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/iv_iconfrom"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_toRightOf="@+id/iv_iconfrom"
+        android:text="中国青年牛网"
+        android:textColor="@color/sytb2"
+        android:textSize="@dimen/text_size_sp_12"/>
+
+    <TextView
+        android:id="@+id/tv_pj_newitem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tv_ly_newitem"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_5"
+        android:layout_toRightOf="@+id/tv_ly_newitem"
+        android:text="277评语"
+        android:textColor="@color/sytb2"
+        android:textSize="@dimen/text_size_sp_12"/>
+
+    <TextView
+        android:id="@+id/tv_time_newitem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tv_ly_newitem"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_5"
+        android:layout_toRightOf="@+id/tv_pj_newitem"
+        android:text="1小时前"
+        android:textColor="@color/sytb2"
+        android:textSize="@dimen/text_size_sp_12"/>
+
+
+</RelativeLayout>

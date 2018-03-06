@@ -24,6 +24,13 @@ public interface Retrofit2Service {
     Observable<SubscrebedBean> getSubscribed();
 
     @POST("api/news/feed/v57/")
-    Observable<NewListBean> getNewData(@Query("category") String category, @Query("refer") int refer, @Query("count") int count);
+    Observable<NewListBean> getNewDataRefresh(@Query("category") String category, @Query("refer") int refer,
+                                              @Query("count") int count, @Query("last_refresh_sub_entrance_interval") long refresh,
+                                              @Query("min_behot_time") long min_behot_time);
+
+    @POST("api/news/feed/v57/")
+    Observable<NewListBean> getNewDataLoadMore(@Query("category") String category, @Query("refer") int refer,
+                                              @Query("count") int count, @Query("last_refresh_sub_entrance_interval") long refresh,
+                                              @Query("max_behot_time") long max_behot_time);
 
 }

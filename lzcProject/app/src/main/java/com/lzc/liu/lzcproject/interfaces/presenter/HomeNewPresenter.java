@@ -6,6 +6,8 @@ package com.lzc.liu.lzcproject.interfaces.presenter;
 
 public interface HomeNewPresenter {
 
+    void GetSubscribed();
+
     void GetNewData(String category ,int refer,int count);
 
 }

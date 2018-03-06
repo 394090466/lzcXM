@@ -6,5 +6,5 @@ package com.lzc.liu.lzcproject.interfaces.presenter;
 
 public interface MainPresenter {
 
-    void GetSubscribed();
+
 }

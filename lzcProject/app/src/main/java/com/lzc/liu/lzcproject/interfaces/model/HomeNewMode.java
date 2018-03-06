@@ -8,6 +8,10 @@ import com.lzc.liu.lzcproject.model.HomeNewModeImpl;
 
 public interface HomeNewMode {
 
-    void GetNewData(String category ,int refer,int count,HomeNewModeImpl.onHomeNewListener listener);
+    void GetSubscribed(HomeNewModeImpl.onHomeNewListener listener);
+
+    void GetNewDataRefresh(String category ,int refer,int count,long refreshtime,long min_behot_time,HomeNewModeImpl.onHomeNewListener listener);
+
+    void GetNewDataLoadMore(String category ,int refer,int count,long refreshtime,long max_behot_time,HomeNewModeImpl.onHomeNewListener listener);
 
 }

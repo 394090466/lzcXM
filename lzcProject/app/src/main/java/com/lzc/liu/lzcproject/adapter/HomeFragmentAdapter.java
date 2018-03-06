@@ -22,7 +22,7 @@ public class HomeFragmentAdapter extends  IndicatorViewPager.IndicatorFragmentPa
 
     private LayoutInflater inflater;
 
-    public HomeFragmentAdapter(FragmentManager fragmentManager, Activity mactivity) {
+    public  HomeFragmentAdapter(FragmentManager fragmentManager, Activity mactivity) {
         super(fragmentManager);
         inflater = LayoutInflater.from(mactivity);
     }

@@ -62,20 +62,17 @@ public class MainActivity extends BaseActivity implements MainView {
         fragmentlist.add(liveFragmet);
         fragmentlist.add(weatherFragmet);
         fragmentlist.add(meFragment);
-    }
-
-    @Override
-    public void onRefreshData() {
         indicatorView.setOnTransitionListener(new OnTransitionTextListener().setColorId(this, R.color.sytb1, R.color.sytb2));
         viewPager.setCanScroll(false);
-        viewPager.setOffscreenPageLimit(3);
+        viewPager.setOffscreenPageLimit(4);
         indicatorViewPager = new IndicatorViewPager(indicatorView, viewPager);
         indicatorViewPager.setAdapter(new MainFragmentAdapter(getSupportFragmentManager(), this, fragmentlist));
     }
 
+
     @Override
     public void initData() {
-        mainPresenter.GetSubscribed();
+
     }
 
     @Override
