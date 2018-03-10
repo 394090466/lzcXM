@@ -63,4 +63,5 @@
     <dimen name="dp_199">199dp</dimen>
     <dimen name="dp_260">260dp</dimen>
     <dimen name="dp_320">320dp</dimen>
+    <dimen name="dp_500">500dp</dimen>
 </resources>

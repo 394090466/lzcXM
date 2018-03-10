@@ -68,4 +68,14 @@ dependencies {
     //LRecyclerView
     compile 'com.github.jdsjlzx:LRecyclerView:1.5.0'
     implementation 'com.android.support:recyclerview-v7:26.1.0'
+
+    //AgentWeb
+    compile 'com.just.agentweb:agentweb:4.0.2' // (必选)
+    compile 'com.just.agentweb:download:4.0.2' // (可选)
+    compile 'com.just.agentweb:filechooser:4.0.2'// (可选)
+
+    //视频直播
+    compile 'com.shuyu:GSYVideoPlayer:4.1.0'
+
+
 }

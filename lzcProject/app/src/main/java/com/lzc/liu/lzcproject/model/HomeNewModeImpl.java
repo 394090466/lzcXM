@@ -58,7 +58,7 @@ public class HomeNewModeImpl implements HomeNewMode{
 
                     @Override
                     public void onNext(NewListBean subscrebedBean) {
-                        listener.onSuccess(subscrebedBean);
+                        listener.onSuccess(subscrebedBean,category);
                     }
 
                     @Override
@@ -75,7 +75,7 @@ public class HomeNewModeImpl implements HomeNewMode{
     }
 
     @Override
-    public void GetNewDataLoadMore(String category, int refer, int count, long refreshtime, long max_behot_time, final onHomeNewListener listener) {
+    public void GetNewDataLoadMore(final String category, int refer, int count, long refreshtime, long max_behot_time, final onHomeNewListener listener) {
         RxService.createApi(Retrofit2Service.class).getNewDataLoadMore(category,refer,count,refreshtime,max_behot_time)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())// 指定 Subscriber 的回调发生在主线程
@@ -87,7 +87,7 @@ public class HomeNewModeImpl implements HomeNewMode{
 
                     @Override
                     public void onNext(NewListBean subscrebedBean) {
-                        listener.onSuccess(subscrebedBean);
+                        listener.onSuccess(subscrebedBean,category);
                     }
 
                     @Override
@@ -107,7 +107,7 @@ public class HomeNewModeImpl implements HomeNewMode{
 
         void onSuccess(SubscrebedBean subscrebedBean);
 
-        void onSuccess(NewListBean newListBean);
+        void onSuccess(NewListBean newListBean,String category);
 
         void onError();
     }

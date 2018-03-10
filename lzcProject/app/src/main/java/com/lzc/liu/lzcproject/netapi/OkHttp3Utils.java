@@ -30,7 +30,9 @@ public class OkHttp3Utils {
                             .readTimeout(3, TimeUnit.SECONDS)
                             .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS) //设置连接超时 30秒
                             .writeTimeout(3, TimeUnit.MINUTES)
-                            .addInterceptor(new LoggingInterceptor());//添加请求拦截
+                            .addInterceptor(new RequestInterceptor());//添加请求拦截
+//                            .addInterceptor(new ResponseInterceptor());
+
                     //                            .retryOnConnectionFailure(true);
 
                     //如果不是在正式包，添加拦截 打印响应json

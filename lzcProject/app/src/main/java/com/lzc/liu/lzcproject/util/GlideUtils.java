@@ -24,10 +24,11 @@ public class GlideUtils {
     public static RequestBuilder<Drawable> loadImageView(Context context, String url, ImageView imageView) {
         if (options == null) {
             options = new RequestOptions();
-            options.centerCrop()
-                    .placeholder(R.drawable.dialog_bg)
-                    .error(R.drawable.dialog_bg)
-                    .fallback(R.drawable.dialog_bg);
+            options
+                    .fitCenter()
+                    .placeholder(R.drawable.icon_loading)
+                    .error(R.drawable.icon_loading)
+                    .fallback(R.drawable.icon_loading);
         }
         requestBuilder = Glide.with(context)
                 .asDrawable().apply(options);

@@ -146,6 +146,16 @@ public class NewContentBean {
     private List<FilterWordsBean> filter_words;
     private List<ImageListBean> image_list = null;
     private String Ad_label = null;
+    private String content ;
+    private LargeImageBean large_image;
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
 
     public String getAd_label() {
         return Ad_label;
@@ -675,6 +685,16 @@ public class NewContentBean {
         this.image_list = image_list;
     }
 
+
+    public LargeImageBean getLarge_image() {
+        return large_image;
+    }
+
+    public void setLarge_image(LargeImageBean large_image) {
+        this.large_image = large_image;
+    }
+
+
     public static class ForwardInfoBean {
         /**
          * forward_count : 9
@@ -970,11 +990,11 @@ public class NewContentBean {
          * verified_content : 前私募股权基金投研总监 财经问答专家
          */
 
-        private String avatar_url;
+        private String avatar_url = "";
         private String description;
         private boolean follow;
         private int follower_count;
-        private String name;
+        private String name = "";
         private String user_auth_info;
         private long user_id;
         private boolean user_verified;
@@ -1197,6 +1217,63 @@ public class NewContentBean {
             public void setUrl(String url) {
                 this.url = url;
             }
+        }
+    }
+
+    public static class LargeImageBean {
+        /**
+         * height : 273
+         * uri : large/667e000add44ae7e751e
+         * url : http://p3.pstatp.com/large/667e000add44ae7e751e
+         * url_list : [{"url":"http://p3.pstatp.com/large/667e000add44ae7e751e"},{"url":"http://pb9.pstatp.com/large/667e000add44ae7e751e"},{"url":"http://pb1.pstatp.com/large/667e000add44ae7e751e"}]
+         * width : 202
+         */
+
+        private int height;
+        private String uri;
+        @SerializedName("url")
+        private String urlX;
+        private int width;
+        private List<MiddleImageBean> url_list;
+
+        public int getHeight() {
+            return height;
+        }
+
+        public void setHeight(int height) {
+            this.height = height;
+        }
+
+        public String getUri() {
+            return uri;
+        }
+
+        public void setUri(String uri) {
+            this.uri = uri;
+        }
+
+        public String getUrlX() {
+            return urlX;
+        }
+
+        public void setUrlX(String urlX) {
+            this.urlX = urlX;
+        }
+
+        public int getWidth() {
+            return width;
+        }
+
+        public void setWidth(int width) {
+            this.width = width;
+        }
+
+        public List<MiddleImageBean> getUrl_list() {
+            return url_list;
+        }
+
+        public void setUrl_list(List<MiddleImageBean> url_list) {
+            this.url_list = url_list;
         }
     }
 }
