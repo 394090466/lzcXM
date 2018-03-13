@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">Meizi</string>
+    <string name="action_settings">设置</string>
+    <string name="nav_meizi_view">gank看妹！</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="meizi">妹纸</string>
+    <string name="android">Android</string>
+    <string name="ios">IOS</string>
+    <string name="front">前端</string>
+    <string name="douyukanqiu">斗鱼看球</string>
+
+
+    <!-- Behavior -->
+    <string name="cover_header_behavior" translatable="false">com.exsun.meizi.tool.CoverHeaderScrollBehavior</string>
+    <string name="content_behavior" translatable="false">com.exsun.meizi.tool.behavior.HeaderScrollBehavior</string>
+    <string name="image_header_behavior" translatable="false">com.exsun.meizi.tool.behavior.ImageHeaderBehavior</string>
+
+
+    <string name="picture_has_save_to">图片已保存至 %s 文件夹</string>
+    <string name="action_share">分享</string>
+    <string name="share_meizhi_to">开撸！</string>
+    <string name="action_change_skin">换肤</string>
+    <string name="like">喜欢</string>
+    <string name="option">选项</string>
+    <string name="my_like">我的收藏</string>
+    <string name="save_success">收藏成功</string>
+    <string name="cancel_success">取消收藏</string>
+    <string name="tip_double_click_exit">再按一次，退出程序</string>
+    <string name="follow_your_heart">follow your heart</string>
+    <string name="clear_success">清除成功</string>
+    <string name="clear_cache">清除收藏</string>
+    <string name="search">搜索</string>
+    <string name="night_day_mode">夜间/日间模式</string>
+    <string name="search_types">类型选择</string>
+    <string name="please_input_something">搜索内容不能为空</string>
+    <string name="tip_empty_gank">没有数据,尝试下拉刷新！</string>
+    <string name="input_you_want">默认为Android搜索,键盘回车键搜索</string>
+    <string name="search_history">搜索记录</string>
+    <string name="history_detail">单击搜索,长按删除记录</string>
+    <string name="login_user_name_hint">用户名(数字和字母)</string>
+    <string name="login_user_name_password">密码(数字和字母)</string>
+    <string name="action_sign_in">登录</string>
+    <string name="forgot_password">忘记密码</string>
+    <string name="register">注册</string>
+    <string name="action_register_in">注册</string>
+    <string name="login_nick_name_hint">昵称</string>
+    <string name="location_city">所在城市</string>
+    <string name="login_user_name_password_again">再次输入密码</string>
+    <string name="dialog_ok">确定</string>
+    <string name="dialog_cancel">取消</string>
+
+</resources>

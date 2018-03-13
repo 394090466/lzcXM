@@ -1,6 +1,6 @@
 package com.lzc.liu.lzcproject.interfaces.view;
 
-import com.lzc.liu.lzcproject.bean.NewListBean;
+import com.lzc.liu.lzcproject.entity.NewListBean;
 
 import java.util.ArrayList;
 

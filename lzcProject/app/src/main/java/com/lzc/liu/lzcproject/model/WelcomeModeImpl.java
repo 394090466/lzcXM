@@ -2,7 +2,7 @@ package com.lzc.liu.lzcproject.model;
 
 import android.util.Log;
 
-import com.lzc.liu.lzcproject.bean.NewDataBean;
+import com.lzc.liu.lzcproject.entity.NewDataBean;
 import com.lzc.liu.lzcproject.interfaces.model.WelcomeModel;
 import com.lzc.liu.lzcproject.netapi.Retrofit2Service;
 import com.lzc.liu.lzcproject.netapi.RxService;

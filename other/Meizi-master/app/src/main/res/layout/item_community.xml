@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:foreground="?attr/selectableItemBackground"
+    card_view:cardCornerRadius="@dimen/margin_3"
+    card_view:cardElevation="@dimen/dimen_2_dp"
+    card_view:cardPreventCornerOverlap="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/card_bg_color"
+        android:padding="15dp">
+
+        <ImageView
+            android:id="@+id/head_portrait"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@mipmap/ic_launcher"/>
+
+        <TextView
+            android:id="@+id/category_author"
+            style="@style/text_drawable"
+            android:layout_height="30dp"
+            android:layout_marginLeft="@dimen/dimen_10_dp"
+            android:layout_toRightOf="@+id/head_portrait"
+            android:text="肖坤"
+            android:textColor="@color/sec_tv_color"/>
+
+        <TextView
+            android:id="@+id/category_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/category_author"
+            android:layout_marginTop="10dp"
+            android:padding="@dimen/dp_10"
+            android:text="hhahah"
+            android:textColor="@color/sec_tv_color"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/category_date"
+            style="@style/text_drawable"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/dimen_5_dp"
+            android:text="2017-17-17"
+            android:textColor="@color/sec_tv_color"/>
+
+        <LinearLayout
+            android:id="@+id/location_linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/category_desc"
+            android:layout_marginTop="@dimen/dp_10"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/location"
+                style="@style/text_drawable"
+                android:drawableLeft="@mipmap/location_icon"
+                android:text="武汉"
+                android:textColor="@color/sec_tv_color"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/likeBtn"
+                style="@style/text_drawable"
+                android:layout_marginRight="18dp"
+                android:drawableLeft="@mipmap/zan"
+                android:padding="@dimen/dimen_2_dp"
+                />
+
+            <TextView
+                android:id="@+id/commentBtn"
+                style="@style/text_drawable"
+                android:drawableLeft="@mipmap/comment"
+                android:padding="@dimen/dimen_2_dp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/digCommentBody"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/location_linear"
+            android:background="@drawable/im_distribute_comm_bg"
+            android:orientation="vertical"
+            android:paddingBottom="8dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:paddingTop="12dp"
+            >
+
+            <com.exsun.meizi.widget.like_dianzan.FavortListView
+                android:id="@+id/favortListTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_5_dp"
+                android:gravity="center_vertical"
+                android:lineSpacingMultiplier="1.1"
+                android:textColor="#7f7f7f"
+                android:textSize="14sp"/>
+
+            <View
+                android:id="@+id/lin_dig"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:background="#cfcfcf"
+                android:visibility="gone"/>
+
+            <com.exsun.meizi.widget.comment.CommentListView
+                android:id="@+id/commentList"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

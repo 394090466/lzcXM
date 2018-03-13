@@ -1,8 +1,9 @@
 package com.lzc.liu.lzcproject.netapi;
 
-import com.lzc.liu.lzcproject.bean.NewDataBean;
-import com.lzc.liu.lzcproject.bean.NewListBean;
-import com.lzc.liu.lzcproject.bean.SubscrebedBean;
+import com.lzc.liu.lzcproject.entity.NewDataBean;
+import com.lzc.liu.lzcproject.entity.NewListBean;
+import com.lzc.liu.lzcproject.entity.SubscrebedBean;
+import com.lzc.liu.lzcproject.entity.douyu.ChannelsEntity;
 
 import io.reactivex.Observable;
 import retrofit2.Call;
@@ -32,5 +33,13 @@ public interface Retrofit2Service {
     Observable<NewListBean> getNewDataLoadMore(@Query("category") String category, @Query("refer") int refer,
                                               @Query("count") int count, @Query("last_refresh_sub_entrance_interval") long refresh,
                                               @Query("max_behot_time") long max_behot_time);
+
+    /**
+     * 获取斗鱼频道频道信息
+     *
+     * @return
+     */
+    @GET("api/v1/game")
+    Observable<ChannelsEntity> getChannels();
 
 }

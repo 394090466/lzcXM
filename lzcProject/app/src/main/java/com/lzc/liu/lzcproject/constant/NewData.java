@@ -1,7 +1,7 @@
 package com.lzc.liu.lzcproject.constant;
 
 import com.blankj.utilcode.util.StringUtils;
-import com.lzc.liu.lzcproject.bean.SubscrebedBean;
+import com.lzc.liu.lzcproject.entity.SubscrebedBean;
 
 import java.util.ArrayList;
 import java.util.List;

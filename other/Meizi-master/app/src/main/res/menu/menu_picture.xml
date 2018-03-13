@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools">
+
+    <!--<item-->
+    <!--android:id="@+id/action_search"-->
+    <!--android:icon="@mipmap/search"-->
+    <!--android:title="Search"-->
+    <!--app:showAsAction="ifRoom"/>-->
+    <!--<item-->
+    <!--android:id="@+id/action_notifications"-->
+    <!--android:icon="@mipmap/search"-->
+    <!--android:title="notifications"-->
+    <!--app:showAsAction="ifRoom"/>-->
+    <item
+        android:id="@+id/action_save"
+        android:icon="@mipmap/save"
+        android:orderInCategory="100"
+        android:title="保存图片"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/action_share"
+        android:icon="@mipmap/share"
+        android:orderInCategory="100"
+        android:title="分享"
+        app:showAsAction="always"/>
+</menu>

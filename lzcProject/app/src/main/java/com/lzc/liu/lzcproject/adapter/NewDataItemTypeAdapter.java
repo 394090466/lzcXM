@@ -8,7 +8,7 @@ import com.lzc.liu.lzcproject.adapter.newitem.NewDataItemImg1;
 import com.lzc.liu.lzcproject.adapter.newitem.NewDataItemImg2;
 import com.lzc.liu.lzcproject.adapter.newitem.NewDataItemImg3;
 import com.lzc.liu.lzcproject.adapter.newitem.NewDataItemText;
-import com.lzc.liu.lzcproject.bean.NewListBean;
+import com.lzc.liu.lzcproject.entity.NewListBean;
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
 
 import java.util.List;

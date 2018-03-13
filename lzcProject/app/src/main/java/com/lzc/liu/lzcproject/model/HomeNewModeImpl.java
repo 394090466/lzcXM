@@ -2,8 +2,8 @@ package com.lzc.liu.lzcproject.model;
 
 import android.util.Log;
 
-import com.lzc.liu.lzcproject.bean.NewListBean;
-import com.lzc.liu.lzcproject.bean.SubscrebedBean;
+import com.lzc.liu.lzcproject.entity.NewListBean;
+import com.lzc.liu.lzcproject.entity.SubscrebedBean;
 import com.lzc.liu.lzcproject.interfaces.model.HomeNewMode;
 import com.lzc.liu.lzcproject.netapi.Retrofit2Service;
 import com.lzc.liu.lzcproject.netapi.RxService;

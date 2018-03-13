@@ -3,7 +3,8 @@ package com.lzc.liu.lzcproject.presenter;
 import android.content.Context;
 
 import com.blankj.utilcode.util.SPUtils;
-import com.lzc.liu.lzcproject.bean.NewDataBean;
+import com.lzc.liu.lzcproject.constant.Constant;
+import com.lzc.liu.lzcproject.entity.NewDataBean;
 import com.lzc.liu.lzcproject.interfaces.model.WelcomeModel;
 import com.lzc.liu.lzcproject.interfaces.presenter.WelcomePresenter;
 import com.lzc.liu.lzcproject.interfaces.view.WelcomeView;
@@ -45,6 +46,7 @@ public class WelcomePresenterImpl implements WelcomePresenter, WelcomeModeImpl.o
         hostlist.get(1).getMax_time();
         String url = "http://" + hostlist.get(https_to_http).getHost() + "/";
         RxService.setUrls(url);
+        Constant.JINRITOUTIAO = url;
         SPUtils.getInstance().put(INIT_URL, url);
         welcomeView.onInitOver();
     }

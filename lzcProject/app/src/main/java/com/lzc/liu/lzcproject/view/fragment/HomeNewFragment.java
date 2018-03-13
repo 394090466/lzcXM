@@ -18,8 +18,8 @@ import com.just.agentweb.AgentWeb;
 import com.lzc.liu.lzcproject.R;
 import com.lzc.liu.lzcproject.adapter.NewDataItemTypeAdapter;
 import com.lzc.liu.lzcproject.base.BaseViewLazyFragment;
-import com.lzc.liu.lzcproject.bean.NewContentBean;
-import com.lzc.liu.lzcproject.bean.NewListBean;
+import com.lzc.liu.lzcproject.entity.NewContentBean;
+import com.lzc.liu.lzcproject.entity.NewListBean;
 import com.lzc.liu.lzcproject.constant.NewData;
 import com.lzc.liu.lzcproject.interfaces.presenter.HomeNewPresenter;
 import com.lzc.liu.lzcproject.interfaces.view.HomeNewView;
@@ -167,7 +167,7 @@ public class HomeNewFragment extends BaseViewLazyFragment implements HomeNewView
                     //                HighlightsActivity.createIntent(WonderfulReviewActivity.this,strings);
                     String stringjsonData = datalist.get(position).getContent();
                     NewContentBean newContentBean = new Gson().fromJson(stringjsonData, NewContentBean.class);
-                    WebActivity.createIntent(getBaseActivity(),newContentBean.getArticle_url());
+                    WebActivity.createIntent(getBaseActivity(),newContentBean.getArticle_url(),newContentBean.getUser_info().getAvatar_url(),newContentBean.getUser_info().getName());
                 }
             });
         }
