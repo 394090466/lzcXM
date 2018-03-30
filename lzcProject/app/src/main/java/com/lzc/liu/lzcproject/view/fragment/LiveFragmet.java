@@ -2,8 +2,7 @@ package com.lzc.liu.lzcproject.view.fragment;
 
 import android.util.Log;
 
-import com.lzc.liu.lzcproject.R;
-import com.lzc.liu.lzcproject.base.BaseViewLazyFragment;
+import com.lzc.liu.lzcproject.base.ReactFragment;
 import com.lzc.liu.lzcproject.constant.Constant;
 import com.lzc.liu.lzcproject.entity.douyu.ChannelsEntity;
 import com.lzc.liu.lzcproject.interfaces.presenter.LivePresenter;
@@ -17,14 +16,15 @@ import java.util.List;
  * Created by liu on 2018/2/26.
  */
 
-public class LiveFragmet extends BaseViewLazyFragment implements LiveView {
+public class LiveFragmet extends ReactFragment implements LiveView {
 
 
     private LivePresenter presenter;
 
     @Override
     protected int getViewID() {
-        return R.layout.fragment_live;
+        return 0;
+//        return R.layout.fragment_live;
     }
 
     @Override
@@ -60,5 +60,10 @@ public class LiveFragmet extends BaseViewLazyFragment implements LiveView {
     @Override
     public void getChannelsSuccess(List<ChannelsEntity.DataBean> channelEntities) {
         Log.v("lzc:",channelEntities.get(0).getGame_name());
+    }
+
+    @Override
+    protected String getMainPageName() {
+        return "lzcproject";
     }
 }

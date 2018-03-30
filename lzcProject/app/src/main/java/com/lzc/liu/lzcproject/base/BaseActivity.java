@@ -6,6 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.blankj.utilcode.util.BarUtils;
 import com.blankj.utilcode.util.NetworkUtils;
+import com.facebook.react.ReactInstanceManager;
+import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
+import com.lzc.liu.lzcproject.application.MainApplication;
 import com.lzc.liu.lzcproject.broadcastreceiver.NetStateReceiver;
 import com.lzc.liu.lzcproject.util.AppManagerUtils;
 
@@ -15,11 +18,13 @@ import butterknife.ButterKnife;
  * Created by liu on 2018/2/24.
  */
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity implements DefaultHardwareBackBtnHandler {
 
     protected NetStateReceiver.NetChangeObserver mNetChangeObserver = null;
 
     private boolean isNetAvailable;
+
+    private ReactInstanceManager mReactInstanceManager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,6 +36,13 @@ public abstract class BaseActivity extends AppCompatActivity {
         netstate();
         broadcast();
         AppManagerUtils.getAppManager().addActivity(this);
+        /**
+         * Get the reference to the ReactInstanceManager
+         */
+
+        mReactInstanceManager =
+                ((MainApplication) getApplication()).getReactNativeHost().getReactInstanceManager();
+
     }
 
     /**
@@ -125,12 +137,19 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onPause() {
         NetStateReceiver.removeRegisterObserver(mNetChangeObserver);
         super.onPause();
+        if (mReactInstanceManager != null) {
+            mReactInstanceManager.onHostPause();
+        }
     }
 
     @Override
     protected void onResume() {
         NetStateReceiver.registerObserver(mNetChangeObserver);
         super.onResume();
+
+        if (mReactInstanceManager != null) {
+            mReactInstanceManager.onHostResume(this, this);
+        }
     }
 
 
@@ -140,4 +159,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         // 结束Activity&从堆栈中移除
         AppManagerUtils.getAppManager().finishActivity(this);
     }
+
+    @Override
+    public void invokeDefaultOnBackPressed() {
+        super.onBackPressed();
+    }
+
 }

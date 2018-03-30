@@ -24,7 +24,9 @@ public abstract class BaseViewLazyFragment extends LazyFragment {
     @Override
     protected void onCreateViewLazy(Bundle savedInstanceState) {
         super.onCreateViewLazy(savedInstanceState);
-        setContentView(getViewID());
+        if (getViewID()!=0){
+            setContentView(getViewID());
+        }
         ButterKnife.bind( this , getContentView()) ;
         initView();     //初始化布局
         initData();

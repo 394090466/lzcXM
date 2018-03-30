@@ -25,7 +25,6 @@
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.FLASHLIGHT"/>
     <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
-
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
@@ -53,9 +52,12 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".view.activity.WebActivity"
-                  android:hardwareAccelerated="true"
-                  android:configChanges="orientation|screenSize">
+        <activity
+            android:name=".view.activity.WebActivity"
+            android:configChanges="orientation|screenSize"
+            android:hardwareAccelerated="true">
+        </activity>
+        <activity android:name=".view.activity.ReactNativeActivity">
         </activity>
     </application>
 
