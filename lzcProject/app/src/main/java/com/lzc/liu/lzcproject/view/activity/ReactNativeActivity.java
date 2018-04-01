@@ -1,15 +1,15 @@
 package com.lzc.liu.lzcproject.view.activity;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import com.facebook.react.ReactActivity;
 
-import com.lzc.liu.lzcproject.R;
+public class ReactNativeActivity extends ReactActivity {
 
-public class ReactNativeActivity extends AppCompatActivity {
-
+    /**
+     * Returns the name of the main component registered from JavaScript.
+     * This is used to schedule rendering of the component.
+     */
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_react_native);
+    protected String getMainComponentName() {
+        return "lzcproject";
     }
 }

@@ -147,10 +147,14 @@
     <color name="gray_cc">#cccccc</color><!--灰色cc -->
     <color name="gray_8f">#8f8f8f</color><!--灰色8f -->
 
+    <color name="colorTextDark">#212121</color>
+
     <color name="sytb1">#d81e06</color><!--首页tabel1 -->
     <color name="sytb2">#8a8a8a</color><!--首页tabel2 -->
 
     <color name="zt">#ff4117</color><!--主题 -->
+
+    <color name="btmh">#708f8f8f</color><!--灰色8f -->
 
 
 </resources>

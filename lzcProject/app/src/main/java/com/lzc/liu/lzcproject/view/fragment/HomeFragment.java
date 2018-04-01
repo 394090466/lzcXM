@@ -46,7 +46,7 @@ public class HomeFragment extends BaseViewLazyFragment implements NewView {
         indicatorViewPager.setAdapter(new HomeFragmentAdapter(getChildFragmentManager(), getBaseActivity()));
         homeFiv.setSplitAuto(false);
         spHome.setCanScroll(true);
-        spHome.setOffscreenPageLimit(10);
+        spHome.setOffscreenPageLimit(4);
     }
 
 

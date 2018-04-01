@@ -138,7 +138,7 @@ public class HomeNewFragment extends BaseViewLazyFragment implements HomeNewView
         }
         datalist.addAll(dataBean);
         mLRecyclerViewAdapter.notifyDataSetChanged();
-        recyclerView.refreshComplete(Page);
+        recyclerView.refreshComplete(REQUEST_COUNT);
     }
 
     @Override

@@ -2,11 +2,32 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/rl_home"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        android:layout_height="@dimen/dp_70">
+
+        <com.shizhefei.view.indicator.ScrollIndicatorView
+            android:id="@+id/home_fiv"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:layout_alignParentBottom="true"
+            >
+
+        </com.shizhefei.view.indicator.ScrollIndicatorView>
+
+    </RelativeLayout>
+
+    <com.shizhefei.view.viewpager.SViewPager
+        android:id="@+id/sp_home"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="live"
-        android:layout_centerInParent="true"/>
+        android:layout_below="@+id/rl_home">
+
+    </com.shizhefei.view.viewpager.SViewPager>
+
 </RelativeLayout>
