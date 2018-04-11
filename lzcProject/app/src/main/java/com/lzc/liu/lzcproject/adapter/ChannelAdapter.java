@@ -1,6 +1,8 @@
 package com.lzc.liu.lzcproject.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -8,6 +10,7 @@ import android.widget.TextView;
 import com.lzc.liu.lzcproject.R;
 import com.lzc.liu.lzcproject.entity.douyu.RoomsEntity;
 import com.lzc.liu.lzcproject.util.GlideUtils;
+import com.lzc.liu.lzcproject.view.activity.LiveActivity;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
@@ -46,12 +49,12 @@ public class ChannelAdapter extends CommonAdapter<RoomsEntity.DataBean> {
             public void onClick(View v)
             {
                 // jump to live activity
-//                Intent intent = new Intent(mContext, LiveActivity.class);
-//                Bundle bundle = new Bundle();
-//                bundle.putString(LiveActivity.ROOM_TITLE, dataBean.getRoom_name());
-//                bundle.putString(LiveActivity.ROOM_ID, dataBean.getRoom_id());
-//                intent.putExtras(bundle);
-//                mContext.startActivity(intent);
+                Intent intent = new Intent(mContext, LiveActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString(LiveActivity.ROOM_TITLE, dataBean.getRoom_name());
+                bundle.putString(LiveActivity.ROOM_ID, dataBean.getRoom_id());
+                intent.putExtras(bundle);
+                mContext.startActivity(intent);
             }
         });
     }

@@ -10,6 +10,7 @@ public class Constant
 {
     public static final String ROOT_PATH = "http://gank.io/api/";
     public static final String DOUYU_BASE_URL = "http://www.douyutv.com/";
+    public static final String TOUTIAO_BASE_URL = "http://dm.toutiao.com/";
     public static final String GUOLIN_BASE_URL = "http://chuansong.me/account/guolin_blog";
     public static final String CSM_BASE_URL = "http://chuansong.me";
     public static String JINRITOUTIAO = "";

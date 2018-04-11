@@ -1,7 +1,6 @@
 package com.lzc.liu.lzcproject.adapter;
 
 import android.content.Context;
-import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,22 +27,21 @@ public class BannerViewPagerAdapter extends IndicatorViewPager.IndicatorViewPage
 
     private LayoutInflater inflater;
 
-    public BannerViewPagerAdapter(Context context,List<SlidersEntity.DataBean> dataBeanList){
+    public BannerViewPagerAdapter(Context context){
         this.context = context;
         inflater = LayoutInflater.from(context);
         this.dataBeanList = new ArrayList<>();
-        this.dataBeanList.addAll(dataBeanList);
     }
 
-//    public void updateData(String[] images) {
-//        this.images = images;
-//        notifyDataSetChanged();
-//    }
+    public void updateData(List<SlidersEntity.DataBean> dataBeanList) {
+        this.dataBeanList.addAll(dataBeanList);
+        notifyDataSetChanged();
+    }
 
     @Override
     public View getViewForTab(int position, View convertView, ViewGroup container) {
         if (convertView == null) {
-            convertView = inflater.inflate(R.layout.tab_guide, container, false);
+            convertView = new View(container.getContext());
         }
         return convertView;
     }
@@ -61,12 +59,12 @@ public class BannerViewPagerAdapter extends IndicatorViewPager.IndicatorViewPage
         return convertView;
     }
 
-    @Override
-    public int getItemPosition(Object object) {
-        //这是ViewPager适配器的特点,有两个值 POSITION_NONE，POSITION_UNCHANGED，默认就是POSITION_UNCHANGED,
-        // 表示数据没变化不用更新.notifyDataChange的时候重新调用getViewForPage
-        return PagerAdapter.POSITION_NONE;
-    }
+//    @Override
+//    public int getItemPosition(Object object) {
+//        //这是ViewPager适配器的特点,有两个值 POSITION_NONE，POSITION_UNCHANGED，默认就是POSITION_UNCHANGED,
+//        // 表示数据没变化不用更新.notifyDataChange的时候重新调用getViewForPage
+//        return PagerAdapter.POSITION_NONE;
+//    }
 
     @Override
     public int getCount() {

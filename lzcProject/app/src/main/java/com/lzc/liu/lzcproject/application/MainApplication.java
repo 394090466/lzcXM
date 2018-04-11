@@ -13,6 +13,7 @@ import com.facebook.soloader.SoLoader;
 import com.lzc.liu.lzcproject.BuildConfig;
 import com.lzc.liu.lzcproject.broadcastreceiver.ForegroundStateReceiver;
 import com.lzc.liu.lzcproject.broadcastreceiver.NetStateReceiver;
+import com.lzc.liu.lzcproject.util.liveutil.PrefsUtils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -51,6 +52,8 @@ public class MainApplication extends Application implements ReactApplication {
     public ReactContext getReactContext() {
         return mReactContext;
     }
+
+    public static PrefsUtils mPref;
 
     private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
         @Override
@@ -106,6 +109,7 @@ public class MainApplication extends Application implements ReactApplication {
         Utils.init(this);
         SoLoader.init(this, /* native exopackage */ false);
         broadcast();
+        mPref = new PrefsUtils(this, "app_data");
         registerReactInstanceEventListener();
     }
 

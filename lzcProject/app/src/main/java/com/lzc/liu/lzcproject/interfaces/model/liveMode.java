@@ -10,4 +10,9 @@ public interface liveMode {
 
 
     void getChannels(liveModeImpl.onliveModeListener listener);
+
+    void getCDNandRateInfo(String roomId,liveModeImpl.onliveModeListener listener);
+
+    void getHLSUrl(String roomid, String cdn, String rate,liveModeImpl.onliveModeListener listener);
+
 }

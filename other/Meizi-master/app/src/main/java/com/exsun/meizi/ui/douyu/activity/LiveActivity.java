@@ -29,8 +29,7 @@ import butterknife.OnClick;
  * Created by xiaokun on 2017/8/28.
  */
 
-public class LiveActivity extends BaseActivity<LivePresenter, LiveModel> implements LiveContract.View
-{
+public class LiveActivity extends BaseActivity<LivePresenter, LiveModel> implements LiveContract.View {
     public static final String ROOM_ID = "room_id";
     public static final String ROOM_TITLE = "room_title";
     @Bind(R.id.player_view)
@@ -49,10 +48,8 @@ public class LiveActivity extends BaseActivity<LivePresenter, LiveModel> impleme
     private String roomTitle;
 
     @Override
-    public void initData(Bundle bundle)
-    {
-        if (bundle == null)
-        {
+    public void initData(Bundle bundle) {
+        if (bundle == null) {
             return;
         }
         roomId = bundle.getString(ROOM_ID, "");
@@ -60,34 +57,30 @@ public class LiveActivity extends BaseActivity<LivePresenter, LiveModel> impleme
     }
 
     @Override
-    protected int getLayoutId()
-    {
+    protected int getLayoutId() {
         return R.layout.activity_live;
     }
 
     @Override
-    protected void initPresenter()
-    {
+    protected void initPresenter() {
         mPresenter.setVM(this, mModel);
     }
 
     @Override
-    public void doBeforeSetcontentView()
-    {
+    public void doBeforeSetcontentView() {
         super.doBeforeSetcontentView();
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON); // 防止锁屏
-//        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        //        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
     }
 
     @Override
-    public void initView()
-    {
+    public void initView() {
         mPlayerView.setOnFullScreenClickListener(this);
         mPlayerView.isShowPlayerBottomBar(true);
-//        mPlayerView.isShowFullScreenBtn(true);
+        //        mPlayerView.isShowFullScreenBtn(true);
         mPlayerView.isOnlyShowFullBtn(true);
         mCDN = new RoomInfoEntity.DataBean.CdnsWithNameBean();
         mRate = new RoomInfoEntity.DataBean.MultiratesBean();
@@ -98,26 +91,21 @@ public class LiveActivity extends BaseActivity<LivePresenter, LiveModel> impleme
     }
 
     @Override
-    public void doBusiness(Context context)
-    {
+    public void doBusiness(Context context) {
         mPresenter.restoreSetting();
         mPresenter.getCDNandRateInfo(roomId);
     }
 
     @OnClick({R.id.cdn, R.id.rate, R.id.button})
-    public void onViewClicked(View view)
-    {
-        switch (view.getId())
-        {
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
             case R.id.cdn:
-                if (cdnPop != null)
-                {
+                if (cdnPop != null) {
                     cdnPop.show();
                 }
                 break;
             case R.id.rate:
-                if (ratePop != null)
-                {
+                if (ratePop != null) {
                     ratePop.show();
                 }
                 break;
@@ -127,34 +115,26 @@ public class LiveActivity extends BaseActivity<LivePresenter, LiveModel> impleme
     }
 
     @Override
-    public void setMediaCodec(boolean b)
-    {
+    public void setMediaCodec(boolean b) {
         preparePlay();
     }
 
     @Override
-    public void updateHLSUrl(String url)
-    {
+    public void updateHLSUrl(String url) {
         mPlayerView.setPlayerPath(url).start();
     }
 
     @Override
-    public void updateCDNandRateInfo(final List<RoomInfoEntity.DataBean.CdnsWithNameBean> list, final List<RoomInfoEntity.DataBean.MultiratesBean> list2)
-    {
+    public void updateCDNandRateInfo(final List<RoomInfoEntity.DataBean.CdnsWithNameBean> list, final List<RoomInfoEntity.DataBean.MultiratesBean> list2) {
         cdnPop = new PopupMenu(this, cdn);
-        for (RoomInfoEntity.DataBean.CdnsWithNameBean nameBean : list)
-        {
+        for (RoomInfoEntity.DataBean.CdnsWithNameBean nameBean : list) {
             cdnPop.getMenu().add(nameBean.getName());
         }
-        cdnPop.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener()
-        {
+        cdnPop.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
-            public boolean onMenuItemClick(MenuItem item)
-            {
-                for (RoomInfoEntity.DataBean.CdnsWithNameBean nameBean : list)
-                {
-                    if (nameBean.getName().equals(item.getTitle()))
-                    {
+            public boolean onMenuItemClick(MenuItem item) {
+                for (RoomInfoEntity.DataBean.CdnsWithNameBean nameBean : list) {
+                    if (nameBean.getName().equals(item.getTitle())) {
                         mPresenter.onCDNChange(nameBean);
                     }
                 }
@@ -163,19 +143,14 @@ public class LiveActivity extends BaseActivity<LivePresenter, LiveModel> impleme
         });
 
         ratePop = new PopupMenu(this, rate);
-        for (RoomInfoEntity.DataBean.MultiratesBean rate : list2)
-        {
+        for (RoomInfoEntity.DataBean.MultiratesBean rate : list2) {
             ratePop.getMenu().add(rate.getName());
         }
-        ratePop.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener()
-        {
+        ratePop.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
-            public boolean onMenuItemClick(MenuItem item)
-            {
-                for (RoomInfoEntity.DataBean.MultiratesBean rate : list2)
-                {
-                    if (rate.getName().equals(item.getTitle()))
-                    {
+            public boolean onMenuItemClick(MenuItem item) {
+                for (RoomInfoEntity.DataBean.MultiratesBean rate : list2) {
+                    if (rate.getName().equals(item.getTitle())) {
                         mPresenter.onRateChange(rate);
                     }
                 }
@@ -185,10 +160,8 @@ public class LiveActivity extends BaseActivity<LivePresenter, LiveModel> impleme
     }
 
     @Override
-    public void onBackPressed()
-    {
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
-        {
+    public void onBackPressed() {
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             return;
         }
@@ -199,50 +172,42 @@ public class LiveActivity extends BaseActivity<LivePresenter, LiveModel> impleme
      * 准备播放
      */
     @Override
-    public void preparePlay()
-    {
-        if (!TextUtils.isEmpty(roomId) && mCDN != null && mRate != null)
-        {
+    public void preparePlay() {
+        if (!TextUtils.isEmpty(roomId) && mCDN != null && mRate != null) {
             mPresenter.getHLSUrl(roomId, mCDN.getCdn(), mRate.getType() + "");
         }
     }
 
     @Override
-    public void upDateCDN(RoomInfoEntity.DataBean.CdnsWithNameBean cdnsWithNameBean)
-    {
+    public void upDateCDN(RoomInfoEntity.DataBean.CdnsWithNameBean cdnsWithNameBean) {
         this.mCDN = cdnsWithNameBean;
         cdn.setText(cdnsWithNameBean.getName());
         preparePlay();
     }
 
     @Override
-    public void upDateRate(RoomInfoEntity.DataBean.MultiratesBean multiratesBean)
-    {
+    public void upDateRate(RoomInfoEntity.DataBean.MultiratesBean multiratesBean) {
         this.mRate = multiratesBean;
         rate.setText(multiratesBean.getName());
         preparePlay();
     }
 
     @Override
-    protected void onResume()
-    {
+    protected void onResume() {
         super.onResume();
         mPlayerView.onResume();
     }
 
     @Override
-    protected void onPause()
-    {
+    protected void onPause() {
         super.onPause();
         mPlayerView.onPause();
     }
 
     @Override
-    protected void onDestroy()
-    {
+    protected void onDestroy() {
         super.onDestroy();
-        if (mPlayerView != null)
-        {
+        if (mPlayerView != null) {
             mPlayerView.onDestroy();
         }
     }

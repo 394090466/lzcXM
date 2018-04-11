@@ -102,7 +102,7 @@ dependencies {
     compile 'com.just.agentweb:filechooser:4.0.2'
     // (可选)
     //视频直播
-    compile 'com.shuyu:GSYVideoPlayer:4.1.0'
+    compile 'com.shuyu:GSYVideoPlayer:4.1.1'
 
     //java 爬虫
     compile 'org.jsoup:jsoup:1.10.2'

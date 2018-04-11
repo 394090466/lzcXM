@@ -1,5 +1,7 @@
 package com.exsun.meizi.network;
 
+import android.text.TextUtils;
+import android.util.Log;
 import android.util.SparseArray;
 
 import com.exsun.meizi.BuildConfig;
@@ -27,8 +29,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by xiaokun on 2017/7/26.
  */
 
-public class Api
-{
+public class Api {
     public static final int GANK = 0;
     public static final int DOUYU = 1;
     public Retrofit retrofit;
@@ -43,13 +44,24 @@ public class Api
     private static SparseArray<Api> sRetrofitManager = new SparseArray<>();
     private final OkHttpClient okHttpClient;
 
-    private Api(int hostType)
-    {
+    private Api(int hostType) {
         HttpLoggingInterceptor logInterceptor = null;
-        if (BuildConfig.DEBUG)
-        {
+        if (BuildConfig.DEBUG) {
             //开启Log
-            logInterceptor = new HttpLoggingInterceptor();
+            logInterceptor = new HttpLoggingInterceptor(
+                    new HttpLoggingInterceptor.Logger() {
+                        @Override
+                        public void log(String message) {
+                            if (TextUtils.isEmpty(message))
+                                return;
+                            String s = message.substring(0, 1);
+                            //如果收到响应是json才打印
+                            if ("{".equals(s) || "[".equals(s)) {
+                                Log.i("lzc","收到响应: " + message);
+                            }
+                        }
+                    }
+            );
             logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         }
 
@@ -57,15 +69,16 @@ public class Api
                 .readTimeout(READ_TIME_OUT, TimeUnit.MILLISECONDS)
                 .connectTimeout(CONNECT_TIME_OUT, TimeUnit.MILLISECONDS)
                 .addInterceptor(logInterceptor)
-//                .addInterceptor(new GzipRequsetInterceptor())
+                //                .addInterceptor(new GzipRequsetInterceptor())
                 .addNetworkInterceptor(new StethoInterceptor())
+                .addInterceptor(new RequestInterceptor())//添加请求拦截
                 .build();
+
+
         String baseUrl = "";
-        if (hostType == GANK)
-        {
+        if (hostType == GANK) {
             baseUrl = Constant.ROOT_PATH;
-        } else if (hostType == DOUYU)
-        {
+        } else if (hostType == DOUYU) {
             baseUrl = Constant.DOUYU_BASE_URL;
         }
 
@@ -78,22 +91,18 @@ public class Api
         douyuApiService = retrofit.create(DouyuApiService.class);
     }
 
-    public static ApiService getDefault(int host)
-    {
+    public static ApiService getDefault(int host) {
         Api api = sRetrofitManager.get(host);
-        if (api == null)
-        {
+        if (api == null) {
             api = new Api(host);
             sRetrofitManager.put(host, api);
         }
         return api.apiService;
     }
 
-    public static DouyuApiService getDouyuService(int host)
-    {
+    public static DouyuApiService getDouyuService(int host) {
         Api api = sRetrofitManager.get(host);
-        if (api == null)
-        {
+        if (api == null) {
             api = new Api(host);
             sRetrofitManager.put(host, api);
         }
@@ -103,14 +112,11 @@ public class Api
     /**
      * 添加gzip压缩拦截器
      */
-    private static class GzipRequsetInterceptor implements Interceptor
-    {
+    private static class GzipRequsetInterceptor implements Interceptor {
         @Override
-        public Response intercept(Chain chain) throws IOException
-        {
+        public Response intercept(Chain chain) throws IOException {
             Request originalRequest = chain.request();
-            if (originalRequest.body() == null || originalRequest.header("Content-Encoding") != null)
-            {
+            if (originalRequest.body() == null || originalRequest.header("Content-Encoding") != null) {
                 return chain.proceed(originalRequest);
             }
             Request compressedRequest = originalRequest.newBuilder()
@@ -120,25 +126,20 @@ public class Api
             return chain.proceed(compressedRequest);
         }
 
-        private RequestBody gzip(final RequestBody body)
-        {
-            return new RequestBody()
-            {
+        private RequestBody gzip(final RequestBody body) {
+            return new RequestBody() {
                 @Override
-                public MediaType contentType()
-                {
+                public MediaType contentType() {
                     return body.contentType();
                 }
 
                 @Override
-                public long contentLength() throws IOException
-                {
+                public long contentLength() throws IOException {
                     return -1;
                 }
 
                 @Override
-                public void writeTo(BufferedSink sink) throws IOException
-                {
+                public void writeTo(BufferedSink sink) throws IOException {
                     BufferedSink gzipSink = Okio.buffer(new GzipSink(sink));
                     body.writeTo(gzipSink);
                     gzipSink.close();

@@ -1,5 +1,6 @@
 package com.lzc.liu.lzcproject.view.fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
@@ -16,14 +17,14 @@ import com.lzc.liu.lzcproject.R;
 import com.lzc.liu.lzcproject.adapter.BannerViewPagerAdapter;
 import com.lzc.liu.lzcproject.adapter.ChannelAdapter;
 import com.lzc.liu.lzcproject.base.BaseViewLazyFragment;
-import com.lzc.liu.lzcproject.constant.Constant;
 import com.lzc.liu.lzcproject.entity.douyu.RoomsEntity;
 import com.lzc.liu.lzcproject.entity.douyu.SlidersEntity;
 import com.lzc.liu.lzcproject.interfaces.ChannelContract;
-import com.lzc.liu.lzcproject.netapi.RxService;
 import com.lzc.liu.lzcproject.presenter.ChannelPresenterImpl;
+import com.shizhefei.view.indicator.BannerComponent;
 import com.shizhefei.view.indicator.Indicator;
-import com.shizhefei.view.indicator.IndicatorViewPager;
+import com.shizhefei.view.indicator.slidebar.ColorBar;
+import com.shizhefei.view.indicator.slidebar.ScrollBar;
 import com.zhy.adapter.recyclerview.wrapper.LoadMoreWrapper;
 
 import java.util.ArrayList;
@@ -59,9 +60,10 @@ public class ChannelFragment extends BaseViewLazyFragment implements ChannelCont
 
     private ChannelPresenterImpl mPresenter;
 
-    private IndicatorViewPager indicatorViewPager;
+    private BannerViewPagerAdapter bannerViewPagerAdapter;
 
-    private List<SlidersEntity.DataBean> dataBeanList = null;
+    private BannerComponent bannerComponent;
+
 
     @Override
     protected int getViewID() {
@@ -75,7 +77,6 @@ public class ChannelFragment extends BaseViewLazyFragment implements ChannelCont
             return;
         }
         cateId = bundle.getString(CATE_ID);
-        dataBeanList = new ArrayList<>();
         mPresenter = new ChannelPresenterImpl(getActivity(), this);
 
         GridLayoutManager manager = new GridLayoutManager(getBaseActivity(), 2);
@@ -97,9 +98,14 @@ public class ChannelFragment extends BaseViewLazyFragment implements ChannelCont
             View header = LayoutInflater.from(getActivity()).inflate(R.layout.livebanner,(ViewGroup)findViewById(android.R.id.content), false);
             ViewPager viewPager =  header.findViewById(R.id.guide_viewPager);
             Indicator indicator =  header.findViewById(R.id.guide_indicator);
-            indicatorViewPager = new IndicatorViewPager(indicator, viewPager);
-            BannerViewPagerAdapter bannerViewPagerAdapter = new BannerViewPagerAdapter(getActivity(),dataBeanList);
-            indicatorViewPager.setAdapter(bannerViewPagerAdapter);
+            indicator.setScrollBar(new ColorBar(getApplicationContext(), Color.WHITE, 0, ScrollBar.Gravity.CENTENT_BACKGROUND));
+            bannerComponent = new BannerComponent(indicator, viewPager,false);
+            bannerViewPagerAdapter = new BannerViewPagerAdapter(getActivity());
+            bannerComponent.setAdapter(bannerViewPagerAdapter);
+            //默认就是800毫秒，设置单页滑动效果的时间
+            //        bannerComponent.setScrollDuration(800);
+            //设置播放间隔时间，默认情况是3000毫秒
+            bannerComponent.setAutoPlayTime(2500);
             mLRecyclerViewAdapter.addHeaderView(header);
         }
 
@@ -123,7 +129,6 @@ public class ChannelFragment extends BaseViewLazyFragment implements ChannelCont
     }
 
     private void refresh() {
-        RxService.setUrls(Constant.DOUYU_BASE_URL);
         if (cateId.equals("0")) {
             mPresenter.getRoomsWithSliders(cateId, mLimit, mOffset);
         }
@@ -182,12 +187,29 @@ public class ChannelFragment extends BaseViewLazyFragment implements ChannelCont
      */
     @Override
     public void getMixSuccess(List<SlidersEntity.DataBean> dataBeanList) {
-        dataBeanList.addAll(dataBeanList);
-        indicatorViewPager.notifyDataSetChanged();
+        bannerViewPagerAdapter.updateData(dataBeanList);
     }
 
     @Override
     public void getMixFailed(Throwable throwable) {
 
+    }
+
+
+    @Override
+    protected void onFragmentStartLazy() {
+        super.onFragmentStartLazy();
+        if (bannerComponent!=null){
+            bannerComponent.startAutoPlay();
+        }
+
+    }
+
+    @Override
+    protected void onFragmentStopLazy() {
+        super.onFragmentStopLazy();
+        if (bannerComponent!=null){
+            bannerComponent.stopAutoPlay();
+        }
     }
 }

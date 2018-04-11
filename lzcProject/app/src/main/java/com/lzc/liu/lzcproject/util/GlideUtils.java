@@ -7,6 +7,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestBuilder;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.lzc.liu.lzcproject.R;
 
@@ -24,19 +25,23 @@ public class GlideUtils {
     public static RequestBuilder<Drawable> loadImageView(Context context, String url, ImageView imageView) {
         if (options == null) {
             options = new RequestOptions();
-            options
-                    .fitCenter()
+            options.fitCenter()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .placeholder(R.drawable.icon_loading)
                     .error(R.drawable.icon_loading)
                     .fallback(R.drawable.icon_loading);
         }
+
         requestBuilder = Glide.with(context)
                 .asDrawable().apply(options);
+
         requestBuilder
                 .clone()
                 .load(url)
                 .into(imageView);
+
         return requestBuilder;
+
     }
 
 }

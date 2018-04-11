@@ -18,7 +18,7 @@ public class WelcomeModeImpl implements WelcomeModel {
 
     @Override
     public void GetDataInit(final onWelcomeListener listener) {
-        RxService.createApi(Retrofit2Service.class).getDataInit("adc=322230")
+        RxService.createToutiaoApi(Retrofit2Service.class).getDataInit("adc=322230")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())// 指定 Subscriber 的回调发生在主线程
                 .subscribe(new Observer<NewDataBean>() {

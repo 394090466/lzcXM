@@ -6,10 +6,8 @@ import android.util.Log;
 import com.lzc.liu.lzcproject.R;
 import com.lzc.liu.lzcproject.adapter.MainFragmentAdapter;
 import com.lzc.liu.lzcproject.base.BaseActivity;
-import com.lzc.liu.lzcproject.constant.Constant;
 import com.lzc.liu.lzcproject.interfaces.presenter.MainPresenter;
 import com.lzc.liu.lzcproject.interfaces.view.MainView;
-import com.lzc.liu.lzcproject.netapi.RxService;
 import com.lzc.liu.lzcproject.presenter.MainPresenterImpl;
 import com.lzc.liu.lzcproject.view.fragment.HomeFragment;
 import com.lzc.liu.lzcproject.view.fragment.LiveFragmet;
@@ -86,11 +84,9 @@ public class MainActivity extends BaseActivity implements MainView {
                 switch (currentItem){
                     case 0:
                         Log.v("lzc:","点击了新闻页面");
-                        RxService.setUrls(Constant.JINRITOUTIAO);
                         break;
                     case 1:
                         Log.v("lzc:","点击了直播页面");
-                        RxService.setUrls(Constant.DOUYU_BASE_URL);
                         break;
                 }
             }

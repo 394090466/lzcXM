@@ -22,7 +22,7 @@ public class ChannelModelImpl implements ChannelContract.Model {
 
     @Override
     public void getSlider(final onChannelModeListener listener) {
-        RxService.createApi(DouyuApiService.class).getSliders()
+        RxService.createDouyuApi(DouyuApiService.class).getSliders()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())// 指定 Subscriber 的回调发生在主线程
                 .subscribe(new Observer<SlidersEntity>() {
@@ -52,7 +52,7 @@ public class ChannelModelImpl implements ChannelContract.Model {
 
     @Override
     public void getRooms(String cateId, int limit, int offset, final onChannelModeListener listener) {
-        RxService.createApi(DouyuApiService.class).getRooms(cateId,limit,offset)
+        RxService.createDouyuApi(DouyuApiService.class).getRooms(cateId,limit,offset)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())// 指定 Subscriber 的回调发生在主线程
                 .subscribe(new Observer<RoomsEntity>() {

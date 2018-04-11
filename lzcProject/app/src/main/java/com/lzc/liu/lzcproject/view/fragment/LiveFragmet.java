@@ -6,11 +6,9 @@ import android.util.Log;
 import com.lzc.liu.lzcproject.R;
 import com.lzc.liu.lzcproject.adapter.ChannelPageAdapter;
 import com.lzc.liu.lzcproject.base.BaseViewLazyFragment;
-import com.lzc.liu.lzcproject.constant.Constant;
 import com.lzc.liu.lzcproject.entity.douyu.ChannelsEntity;
 import com.lzc.liu.lzcproject.interfaces.presenter.LivePresenter;
 import com.lzc.liu.lzcproject.interfaces.view.LiveView;
-import com.lzc.liu.lzcproject.netapi.RxService;
 import com.lzc.liu.lzcproject.presenter.LivePresenterImpl;
 import com.shizhefei.view.indicator.IndicatorViewPager;
 import com.shizhefei.view.indicator.ScrollIndicatorView;
@@ -75,7 +73,6 @@ public class LiveFragmet extends BaseViewLazyFragment implements LiveView {
     }
 
     private void refers(){
-        RxService.setUrls(Constant.DOUYU_BASE_URL);
         presenter.getChannels();
     }
 

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.lzc.liu.lzcproject.view.activity.LiveActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_22"
+        android:background="#000000">
+
+    </android.support.v7.widget.Toolbar>
+
+    <com.lzc.liu.lzcproject.widgets.LiveLayoutVideo
+        android:id="@+id/llv_live_livevideo"
+        android:layout_width="match_parent"
+        android:layout_height="205dp">
+
+    </com.lzc.liu.lzcproject.widgets.LiveLayoutVideo>
+
+</LinearLayout>

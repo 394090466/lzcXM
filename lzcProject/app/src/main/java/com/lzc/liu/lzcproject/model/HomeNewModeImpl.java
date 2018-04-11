@@ -17,7 +17,7 @@ public class HomeNewModeImpl implements HomeNewMode{
 
     @Override
     public void GetSubscribed(final onHomeNewListener listener) {
-        RxService.createApi(Retrofit2Service.class).getSubscribed()
+        RxService.createToutiaoApi(Retrofit2Service.class).getSubscribed()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())// 指定 Subscriber 的回调发生在主线程
                 .subscribe(new Observer<SubscrebedBean>() {
@@ -47,7 +47,7 @@ public class HomeNewModeImpl implements HomeNewMode{
 
     @Override
     public void GetNewDataRefresh(final String category , final int refer, int count,long refreshtime,long min_behot_time, final onHomeNewListener listener) {
-        RxService.createApi(Retrofit2Service.class).getNewDataRefresh(category,refer,count,refreshtime,min_behot_time)
+        RxService.createToutiaoApi(Retrofit2Service.class).getNewDataRefresh(category,refer,count,refreshtime,min_behot_time)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())// 指定 Subscriber 的回调发生在主线程
                 .subscribe(new Observer<NewListBean>() {
@@ -76,7 +76,7 @@ public class HomeNewModeImpl implements HomeNewMode{
 
     @Override
     public void GetNewDataLoadMore(final String category, int refer, int count, long refreshtime, long max_behot_time, final onHomeNewListener listener) {
-        RxService.createApi(Retrofit2Service.class).getNewDataLoadMore(category,refer,count,refreshtime,max_behot_time)
+        RxService.createToutiaoApi(Retrofit2Service.class).getNewDataLoadMore(category,refer,count,refreshtime,max_behot_time)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())// 指定 Subscriber 的回调发生在主线程
                 .subscribe(new Observer<NewListBean>() {
