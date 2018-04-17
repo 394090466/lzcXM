@@ -20,12 +20,6 @@ public interface LiveAcView {
                               List<RoomInfoEntity.DataBean.MultiratesBean> list2);
 
     /**
-     * 更新房间信息
-     * @param dataBean
-     */
-    void initRoom(RoomInfoEntity.DataBean dataBean);
-
-    /**
      * 准备播放
      */
     void preparePlay();

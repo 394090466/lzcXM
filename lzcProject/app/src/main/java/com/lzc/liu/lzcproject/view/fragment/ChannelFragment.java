@@ -158,7 +158,6 @@ public class ChannelFragment extends BaseViewLazyFragment implements ChannelCont
 
             }
         });
-
     }
 
 
