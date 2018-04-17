@@ -1,6 +1,8 @@
 package com.lzc.liu.lzcproject.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 import com.lzc.liu.lzcproject.R;
 import com.lzc.liu.lzcproject.entity.douyu.SlidersEntity;
 import com.lzc.liu.lzcproject.util.GlideUtils;
+import com.lzc.liu.lzcproject.view.activity.LiveActivity;
 import com.shizhefei.view.indicator.IndicatorViewPager;
 
 import java.util.ArrayList;
@@ -47,24 +50,27 @@ public class BannerViewPagerAdapter extends IndicatorViewPager.IndicatorViewPage
     }
 
     @Override
-    public View getViewForPage(int position, View convertView, ViewGroup container) {
+    public View getViewForPage(final int position, View convertView, ViewGroup container) {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.layer_live_banner, container, false);
         }
         ImageView ivbanner = convertView.findViewById(R.id.iv_live_banneriv);
         TextView tv_banner = convertView.findViewById(R.id.tv_live_title);
-//        convertView.setBackgroundResource(images[position]);
         tv_banner.setText(this.dataBeanList.get(position).getTitle());
         GlideUtils.loadImageView(context, this.dataBeanList.get(position).getTv_pic_url(), ivbanner);
+        ivbanner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, LiveActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString(LiveActivity.ROOM_TITLE, dataBeanList.get(position).getRoom().getRoom_name());
+                bundle.putString(LiveActivity.ROOM_ID, dataBeanList.get(position).getRoom().getRoom_id());
+                intent.putExtras(bundle);
+                context.startActivity(intent);
+            }
+        });
         return convertView;
     }
-
-//    @Override
-//    public int getItemPosition(Object object) {
-//        //这是ViewPager适配器的特点,有两个值 POSITION_NONE，POSITION_UNCHANGED，默认就是POSITION_UNCHANGED,
-//        // 表示数据没变化不用更新.notifyDataChange的时候重新调用getViewForPage
-//        return PagerAdapter.POSITION_NONE;
-//    }
 
     @Override
     public int getCount() {

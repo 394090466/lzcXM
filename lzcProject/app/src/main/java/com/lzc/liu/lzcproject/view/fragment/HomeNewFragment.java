@@ -74,11 +74,11 @@ public class HomeNewFragment extends BaseViewLazyFragment implements HomeNewView
                 category = NewData.getDataBeanList().get(i).getCategory();
             }
         }
-        if (StringUtils.equals(category,NewData.getJinritemai())){
+        if (StringUtils.equals(category, NewData.getJinritemai())) {
             recyclerView.setVisibility(View.GONE);
             String url = "";
-            for (int i = 0; i< NewData.getDataBeanList().size(); i ++){
-                if (StringUtils.equals(NewData.getDataBeanList().get(i).getCategory(),category)){
+            for (int i = 0; i < NewData.getDataBeanList().size(); i++) {
+                if (StringUtils.equals(NewData.getDataBeanList().get(i).getCategory(), category)) {
                     url = NewData.getDataBeanList().get(i).getWeb_url();
                 }
             }
@@ -90,13 +90,13 @@ public class HomeNewFragment extends BaseViewLazyFragment implements HomeNewView
                     .ready()//
                     .go("http://www.jd.com");
 
-        }else {
+        } else {
             homeNewPresenter = new HomeNewPresenterImpl(getBaseActivity(), this);
             datalist = new ArrayList<>();
 
 
             recyclerView.setLayoutManager(new LinearLayoutManager(getBaseActivity()));
-            mAdapter = new NewDataItemTypeAdapter(getBaseActivity(), datalist,category);
+            mAdapter = new NewDataItemTypeAdapter(getBaseActivity(), datalist, category);
             mLRecyclerViewAdapter = new LRecyclerViewAdapter(mAdapter);
             moreWrapper = new LoadMoreWrapper(mAdapter);
             DividerDecoration divider = new DividerDecoration.Builder(getBaseActivity())
@@ -122,7 +122,7 @@ public class HomeNewFragment extends BaseViewLazyFragment implements HomeNewView
 
     @Override
     public void initData() {
-        if (!StringUtils.equals(category,NewData.getJinritemai())){
+        if (!StringUtils.equals(category, NewData.getJinritemai())) {
             refresh();
         }
     }
@@ -143,7 +143,7 @@ public class HomeNewFragment extends BaseViewLazyFragment implements HomeNewView
 
     @Override
     public void initListener() {
-        if (!StringUtils.equals(category,NewData.getJinritemai())){
+        if (!StringUtils.equals(category, NewData.getJinritemai())) {
             recyclerView.setOnRefreshListener(new OnRefreshListener() {
                 @Override
                 public void onRefresh() {
@@ -165,9 +165,12 @@ public class HomeNewFragment extends BaseViewLazyFragment implements HomeNewView
                     //                HighlightReplaysBean.ListBean listBean = datalist.get(position);
                     //                String[] strings = {listBean.getTime(),listBean.getName(),listBean.getIntroduce(),listBean.getUrl()};
                     //                HighlightsActivity.createIntent(WonderfulReviewActivity.this,strings);
+
                     String stringjsonData = datalist.get(position).getContent();
                     NewContentBean newContentBean = new Gson().fromJson(stringjsonData, NewContentBean.class);
-                    WebActivity.createIntent(getBaseActivity(),newContentBean.getArticle_url(),newContentBean.getUser_info().getAvatar_url(),newContentBean.getUser_info().getName());
+                    if (StringUtils.isEmpty(newContentBean.getUser_info().getAvatar_url()) || StringUtils.isEmpty(newContentBean.getArticle_url())) {
+                        WebActivity.createIntent(getBaseActivity(), newContentBean.getArticle_url(), newContentBean.getUser_info().getAvatar_url(), newContentBean.getUser_info().getName());
+                    }
                 }
             });
         }
@@ -176,7 +179,7 @@ public class HomeNewFragment extends BaseViewLazyFragment implements HomeNewView
 
     @Override
     public void onPauseLazy() {
-        if (mAgentWeb!=null){
+        if (mAgentWeb != null) {
             mAgentWeb.getWebLifeCycle().onPause();
         }
         super.onPauseLazy();
@@ -185,7 +188,7 @@ public class HomeNewFragment extends BaseViewLazyFragment implements HomeNewView
 
     @Override
     public void onResumeLazy() {
-        if (mAgentWeb!=null){
+        if (mAgentWeb != null) {
             mAgentWeb.getWebLifeCycle().onResume();
         }
         super.onResumeLazy();
@@ -193,7 +196,7 @@ public class HomeNewFragment extends BaseViewLazyFragment implements HomeNewView
 
     @Override
     protected void onDestroyViewLazy() {
-        if (mAgentWeb!=null){
+        if (mAgentWeb != null) {
             mAgentWeb.getWebLifeCycle().onDestroy();
         }
         super.onDestroyViewLazy();

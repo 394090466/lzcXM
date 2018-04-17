@@ -22,4 +22,103 @@
 
     </com.lzc.liu.lzcproject.widgets.LiveLayoutVideo>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_owner_avatar"
+            android:layout_width="@dimen/dp_80"
+            android:layout_height="@dimen/dp_80"
+            android:layout_margin="@dimen/dp_10"/>
+
+        <TextView
+            android:id="@+id/tv_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/iv_owner_avatar"
+            android:layout_marginRight="@dimen/dp_10"
+            android:layout_toLeftOf="@+id/btn_guan_zu"
+            android:layout_toRightOf="@+id/iv_owner_avatar"
+            android:singleLine="true"
+            android:textColor="@color/colorTextDark"
+            android:textSize="@dimen/sp_16"/>
+
+        <TextView
+            android:id="@+id/tv_room_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_nickname"
+            android:layout_marginRight="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_5"
+            android:layout_toLeftOf="@+id/btn_guan_zu"
+            android:layout_toRightOf="@+id/iv_owner_avatar"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:text=""
+            android:textColor="@color/sytb2"
+            android:textSize="@dimen/sp_14"/>
+
+
+        <CheckBox
+            android:id="@+id/btn_guan_zu"
+            android:layout_width="@dimen/dp_50"
+            android:layout_height="@dimen/dp_50"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp_10"
+            android:background="@drawable/selector_guanzu_icon"
+            android:button="@null"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10">
+
+        <TextView
+            android:id="@+id/room_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="房间ID:"
+            android:textColor="@color/colorTextDark"
+            android:textSize="@dimen/text_size_sp_17"/>
+
+        <TextView
+            android:id="@+id/tv_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:layout_toRightOf="@+id/room_id"
+            android:textColor="@color/colorTextDark"
+            android:textSize="@dimen/text_size_sp_17"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/room_id"
+            android:layout_marginTop="@dimen/dp_10"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_game_icon"
+                android:layout_width="@dimen/dp_27"
+                android:layout_height="@dimen/dp_27"/>
+
+            <TextView
+                android:id="@+id/tv_game_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:textSize="@dimen/text_size_sp_17"/>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
 </LinearLayout>
