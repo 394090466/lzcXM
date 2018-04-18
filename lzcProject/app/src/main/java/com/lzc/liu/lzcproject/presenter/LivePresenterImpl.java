@@ -95,6 +95,7 @@ public class LivePresenterImpl implements LivePresenter, liveModeImpl.onliveMode
         value.getCdnsWithName().add(tempCdn);
         if (liveAcView != null) {
             liveAcView.updateCDNandRateInfo(value.getCdnsWithName(), value.getMultirates());
+            liveAcView.initRoom(value);
         }
         restoreCDN(value.getCdnsWithName());
         restoreRate(value.getMultirates());
@@ -173,7 +174,7 @@ public class LivePresenterImpl implements LivePresenter, liveModeImpl.onliveMode
      * @param multirates
      */
     public void restoreRate(List<RoomInfoEntity.DataBean.MultiratesBean> multirates) {
-        int rateCode = Integer.valueOf(MainApplication.mPref.get(Constant.RATE_CODE, "2")).intValue();
+        int rateCode = Integer.valueOf(MainApplication.mPref.get(Constant.RATE_CODE, "1")).intValue();
         for (RoomInfoEntity.DataBean.MultiratesBean rate : multirates) {
             if (rate.getType() == rateCode) {
                 liveAcView.upDateRate(rate);

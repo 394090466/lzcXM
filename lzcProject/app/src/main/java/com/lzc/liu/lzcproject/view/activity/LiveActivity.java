@@ -7,6 +7,10 @@ import android.text.TextUtils;
 import android.transition.Transition;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.blankj.utilcode.util.LogUtils;
 import com.lzc.liu.lzcproject.R;
@@ -16,6 +20,7 @@ import com.lzc.liu.lzcproject.entity.douyu.RoomInfoEntity;
 import com.lzc.liu.lzcproject.interfaces.presenter.LivePresenter;
 import com.lzc.liu.lzcproject.interfaces.view.LiveAcView;
 import com.lzc.liu.lzcproject.presenter.LivePresenterImpl;
+import com.lzc.liu.lzcproject.util.GlideUtils;
 import com.lzc.liu.lzcproject.widgets.LiveLayoutVideo;
 import com.lzc.liu.lzcproject.widgets.SwitchVideoTypeDialog;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
@@ -28,6 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class LiveActivity extends BaseActivity implements LiveAcView {
 
@@ -39,6 +45,22 @@ public class LiveActivity extends BaseActivity implements LiveAcView {
 
     @BindView(R.id.llv_live_livevideo)
     LiveLayoutVideo videoPlayer;
+
+
+    @BindView(R.id.iv_owner_avatar)
+    ImageView ivOwnerAvatar;
+    @BindView(R.id.tv_nickname)
+    TextView tvNickname;
+    @BindView(R.id.tv_room_name)
+    TextView tvRoomName;
+    @BindView(R.id.btn_guan_zu)
+    CheckBox btnGuanZu;
+    @BindView(R.id.tv_id)
+    TextView tvId;
+    @BindView(R.id.iv_game_icon)
+    ImageView ivGameIcon;
+    @BindView(R.id.tv_game_name)
+    TextView tvGameName;
 
     OrientationUtils orientationUtils;
 
@@ -63,7 +85,6 @@ public class LiveActivity extends BaseActivity implements LiveAcView {
     private RoomInfoEntity.DataBean.MultiratesBean mRate;
 
 
-
     @Override
     protected int getView() {
         return R.layout.activity_live;
@@ -81,7 +102,7 @@ public class LiveActivity extends BaseActivity implements LiveAcView {
 
     @Override
     public void initView() {
-        livePresenter = new LivePresenterImpl(this,this);
+        livePresenter = new LivePresenterImpl(this, this);
         Bundle bundle = getIntent().getExtras();
         if (bundle == null) {
             return;
@@ -98,10 +119,6 @@ public class LiveActivity extends BaseActivity implements LiveAcView {
 
 
         isTransition = getIntent().getBooleanExtra(TRANSITION, false);
-
-
-
-
 
         //增加封面
         //        ImageView imageView = new ImageView(this);
@@ -200,9 +217,26 @@ public class LiveActivity extends BaseActivity implements LiveAcView {
 
         videoPlayer.setSwitchOnListItem(new SwitchVideoTypeDialog.OnListItemClickListener() {
             @Override
-            public void onItemClick(int position,List<SwitchVideoModel> data) {
+            public void onItemClick(int position, List<SwitchVideoModel> data) {
                 livePresenter.onRateChange(data.get(position).getMultiratesBeans());
                 videoPlayer.setSwitch(data.get(position).getName());
+            }
+        });
+
+        btnGuanZu.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView,
+                                         boolean isChecked) {
+                // TODO Auto-generated method stub
+                if (isChecked) {
+                    btnGuanZu.setChecked(true);
+                    Log.v("loglzc", "选中");
+                    //editText1.setText(buttonView.getText()+"选中");
+                } else {
+                    btnGuanZu.setChecked(false);
+                    Log.v("loglzc", "取消选中");
+                    //editText1.setText(buttonView.getText()+"取消选中");
+                }
             }
         });
     }
@@ -279,8 +313,8 @@ public class LiveActivity extends BaseActivity implements LiveAcView {
         for (RoomInfoEntity.DataBean.MultiratesBean rate : list2) {
             String source = rate.getName();
             String name = rate.getName();
-            Log.v("lzc",rate.getType()+"------------"+rate.getName());
-            SwitchVideoModel switchVideoModel = new SwitchVideoModel(name, source,rate);
+            Log.v("lzc", rate.getType() + "------------" + rate.getName());
+            SwitchVideoModel switchVideoModel = new SwitchVideoModel(name, source, rate);
             switchVideoModelList.add(switchVideoModel);
         }
 
@@ -289,12 +323,26 @@ public class LiveActivity extends BaseActivity implements LiveAcView {
     }
 
     /**
+     * 更新房间信息
+     *
+     * @param dataBean
+     */
+    @Override
+    public void initRoom(RoomInfoEntity.DataBean dataBean) {
+        GlideUtils.loadImageView(this, dataBean.getOwner_avatar(), ivOwnerAvatar);
+        GlideUtils.loadImageView(this, dataBean.getGame_icon_url(), ivGameIcon);
+        tvNickname.setText(dataBean.getNickname());
+        tvRoomName.setText(dataBean.getRoom_name());
+        tvId.setText(dataBean.getRoom_id());
+        tvGameName.setText(dataBean.getGame_name());
+    }
+
+    /**
      * 准备播放
      */
     @Override
     public void preparePlay() {
-        if (!TextUtils.isEmpty(roomId) && mCDN != null && mRate != null)
-        {
+        if (!TextUtils.isEmpty(roomId) && mCDN != null && mRate != null) {
             livePresenter.getHLSUrl(roomId, mCDN.getCdn(), mRate.getType() + "");
         }
     }
@@ -302,7 +350,7 @@ public class LiveActivity extends BaseActivity implements LiveAcView {
     @Override
     public void upDateCDN(RoomInfoEntity.DataBean.CdnsWithNameBean cdnsWithNameBean) {
         this.mCDN = cdnsWithNameBean;
-//        cdn.setText(cdnsWithNameBean.getName());
+        //        cdn.setText(cdnsWithNameBean.getName());
         preparePlay();
     }
 
@@ -310,7 +358,7 @@ public class LiveActivity extends BaseActivity implements LiveAcView {
     public void upDateRate(RoomInfoEntity.DataBean.MultiratesBean multiratesBean) {
         this.mRate = multiratesBean;
         videoPlayer.setSwitch(multiratesBean.getName());
-//        rate.setText(multiratesBean.getName());
+        //        rate.setText(multiratesBean.getName());
         preparePlay();
     }
 
@@ -328,7 +376,14 @@ public class LiveActivity extends BaseActivity implements LiveAcView {
     public void updateHLSUrl(String url) {
         LogUtils.i(url);
         videoPlayer.setPlayUrl(url);
-        videoPlayer.setUp(url,false, roomTitle);
+        videoPlayer.setUp(url, false, roomTitle);
         videoPlayer.startPlayLogic();
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }
